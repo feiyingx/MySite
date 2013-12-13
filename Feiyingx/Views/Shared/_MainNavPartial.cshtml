@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+    //Check for the current controller so we can highlight the appropriate nav link
+    String currentController = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    String projToggleClass = (currentController == "project") ? "on" : "";
+    String recToggleClass = (currentController == "recommendation") ? "on" : "";
+    String expToggleClass = (currentController == "experience") ? "on" : "";
+    String eduToggleClass = (currentController == "education") ? "on" : "";
+}
+<nav id="main-nav">
+    <a href="/" id="nav-logo"><span>KW</span></a>
+    <ul class="main-links">
+        <li><a href="@Url.Action("index", "project")" class="icon-code @projToggleClass">Projects</a></li>
+        <li><a href="@Url.Action("index", "recommendation")" class="icon-like @recToggleClass">Recos</a></li>
+        <li><a href="@Url.Action("index", "experience")" class="icon-exp @expToggleClass">Experience</a></li>
+        <li><a href="@Url.Action("index", "education")" class="icon-edu @eduToggleClass">Education</a></li>
+    </ul>
+    <ul class="contact-links">
+        <li><a href="#" class="icon-text">text me</a></li>
+        <li><a href="#" class="icon-email">email me</a></li>
+        <li><a href="#" class="icon-video">video chat</a></li>
+        <li><a href="#" class="icon-linkedin"></a></li>
+    </ul>
+</nav>
