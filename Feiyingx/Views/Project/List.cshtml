@@ -1,0 +1,42 @@
+﻿@model List<Feiyingx.Data.Models.Project>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
+    bool isEmpty = Model == null || Model.Count == 0;
+}
+
+<div class="form-container">
+<h2>Projects List</h2>
+
+@if(isEmpty){
+    <p class="warning">Hey where are your projects?</p>
+}else{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Featured?</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var project in Model){
+                <tr>
+                    <td>@project.Id</td>
+                    <td>@project.ProjectTitle</td>
+                    <td>@project.ProjectDate.Value.ToString("MM/dd/yyyy")</td>
+                    <td>@Feiyingx.Helpers.Utility.GetProjectTypeName(project.Type)</td>
+                    <td>@project.IsFeatured.ToString()</td>
+                    <td><a href="@Url.Action("edit", "project", new { id=project.Id })">Info &raquo;</a></td>
+                    <td><a href="@Url.Action("edit", "project", new { id=project.Id })#featured">Featured &raquo;</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+</div>

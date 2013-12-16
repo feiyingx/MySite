@@ -1,0 +1,43 @@
+﻿@model Feiyingx.Data.Models.Project
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="promo-graphic tablefy @Model.FeatureCssTheme">
+    <div class="tablefy-cell">
+        <a href="@Model.ProjectUrl" target="_blank"><img src="@Model.ProjectMainImage" alt="@Model.ProjectTitle" /></a>
+    </div>
+</div>
+<div class="promo-content tablefy @Model.FeatureCssTheme">
+    <div class="tablefy-cell">
+        <div class="proj-detail">
+            <p class="proj-type-date">Android app project - @Feiyingx.Helpers.Utility.GetSeasonString(Model.ProjectDate.Value) @Model.ProjectDate.Value.Year</p>
+            <h2>@Model.ProjectTitle</h2>
+            
+            <p class="proj-desc">
+                @Html.Raw(Model.ProjectDescription)
+            </p>
+
+            <h3>Features</h3>
+            <p class="proj-features">
+                @Html.Raw(Model.ProjectFeatures)
+            </p>
+
+            <h3>Behind the Scenes</h3>
+            <p  class="proj-tech">
+                @Model.ProjectTech
+            </p>
+
+            <div class="action-btns">
+                @if(Model.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))){
+                    <a href="@Model.ProjectUrl" class="link2" target="_blank">Play Store</a>
+                }
+                else if (Model.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website)))
+                {
+                    <a href="@Model.ProjectUrl" class="link2" target="_blank">Go to site</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

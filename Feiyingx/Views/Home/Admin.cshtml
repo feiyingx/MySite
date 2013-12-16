@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-container">
+    <h2>Admin Options</h2>
+    <ul class="admin-nav">
+        <li><a href="/">Go to site</a></li>
+        <li><a href="@Url.Action("new", "project")">New project</a></li>
+        <li><a href="@Url.Action("list","project")">Project list</a></li>
+        <li><a href="@Url.Action("new","recommendation")">New recommendation</a></li>
+        <li><a href="@Url.Action("list","recommendation")">Recommendation list</a></li>
+    </ul>
+    
+</div>

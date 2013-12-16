@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <script type="text/javascript" src="//use.typekit.net/ywx7jnn.js"></script>
+        <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin.css")" />
+        @Scripts.Render("~/bundles/modernizr")
+
+        @RenderSection("head", required: false)
+    </head>
+    <body>
+        <div class="loading tablefy">
+            <div class="tablefy-cell">
+                <div class="loader-container">
+                    <p>I'm on it!</p>
+                    <div class="loader loading-block-1"></div>
+                    <div class="loader loading-block-2"></div>
+                    <div class="loader loading-block-3"></div>
+                    <div class="loader loading-block-4"></div>
+                    <div class="loader loading-block-5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-left">
+                @*Left Nav Section*@
+                @Html.Partial("_MainNavPartial")
+            </div>
+            <div class="col-right">
+                @RenderBody()
+            </div>
+        </div>
+        
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+        <script>
+            
+            $(window).bind('beforeunload', function (e) {
+                startPageLoadTransition();
+            });
+
+            $(function () {
+                completePageLoadTransition();
+            });
+            
+            //Display loading screen for our page transition
+            function startPageLoadTransition() {
+                $(".col-right").addClass("fade-out");
+                $(".loading").show();
+            }
+
+            //Display our new page to complete the transition
+            function completePageLoadTransition() {
+                $(".col-right").hide();
+                setTimeout(function () { $(".loading").hide(); $(".col-right").fadeIn(); }, 50); //Give some load time to avoid jerky UI
+            }
+        </script>
+    </body>
+</html>

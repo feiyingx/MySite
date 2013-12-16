@@ -76,23 +76,29 @@ body {
     height: auto;
     display: block;
     background-color: #222;
+    overflow-y:hidden;
+    z-index:2;
 }
 
 .col-right {
     position: absolute;
-    left:75px;
     top:0;
     bottom:0;
     height: auto;
     display: block;
-    width: 90%;
+    width: 100%;
+    overflow-y:scroll;
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
 }
 
 #main-nav {
     background-color: #222;
     width: 75px;
     padding: 0;
-    float: left;
+    position: fixed;
+    top:0;
+    height: 100%;
 }
 
 #main-nav a {
@@ -108,7 +114,7 @@ body {
     font-size: 32px;
     display: block;
     text-align: center;
-    margin: 30px auto;
+    margin: 15px auto;
 }
 
 #main-nav .main-links li, #main-nav .contact-links li{
@@ -138,7 +144,7 @@ body {
 }
 
 .contact-links {
-    margin-top: 35px;
+    
 }
 
 .icon-code {
@@ -236,18 +242,16 @@ body {
 
 #nav-logo:before {
     content: "WANG";
+    left: -50px;
+    padding-top: 15px;
     font-size: 13px;
     font-weight: bold;
     font-family: "museo-sans";
     color: #fff;
-    top: 44px;
-    right: -80px;
     position: absolute;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-    z-index:-1;
-    opacity: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 #nav-logo:hover:after {
@@ -255,9 +259,7 @@ body {
 }
 
 #nav-logo:hover:before {
-    right: 10px;
-    z-index:1;
-    opacity: 1;
+    left: 20px;
 }
 
 #nav-logo span{
@@ -282,6 +284,7 @@ a#nav-logo {
     min-width: 300px;
     float: left;
     height: 100%;
+    padding-left: 75px;
 }
 
 .promo-graphic a{
@@ -302,13 +305,13 @@ a#nav-logo {
 }
 
 .promo-content {
-    width: 65%;
+    width: 62%;
     display: inline-block;
     float: right;
     height: 100%;
 }
 
-.promo-content .promo-data {
+.promo-content .promo-data, .proj-detail {
     width: 80%;
     margin: 0 auto;
 }
@@ -322,7 +325,7 @@ a#nav-logo {
     vertical-align: middle;
 }
 
-.promo-data h2{
+h2{
     font-size: 50px;
     line-height: 1.25;
     font-weight: 300;
@@ -330,7 +333,7 @@ a#nav-logo {
     -webkit-font-smoothing:antialiased;
 }
 
-.promo-data p {
+.promo-data p, .proj-detail p {
     font-size: 20px;
     line-height: 1.5;
     -webkit-font-smoothing:antialiased;
@@ -437,8 +440,13 @@ a#nav-logo {
 }
 
 .fade-out {
-    animation: fadeOut 0.8s;
-    -webkit-animation: fadeOut 0.8s;
+    animation: fadeOut 0.5s;
+    -webkit-animation: fadeOut 0.5s;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s;
+    -webkit-animation: fadeIn 0.5s;
 }
 
 @keyframes fadeOut {
@@ -555,4 +563,100 @@ a#nav-logo {
     30% {opacity: .4;}
     40% {opacity: .6;}
     50% {opacity: .8;}
+}
+
+.proj-container {
+    padding: 50px 75px 50px 150px;    
+    margin: 0 auto;
+}
+
+.proj-container .proj-list li{
+    display: block;
+    margin-bottom: 45px;
+}
+
+.proj-container .proj-list li img {
+    width: 100px;    
+}
+
+.proj-container .proj-list li .img-container {
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+    position: absolute;
+}
+
+.proj-container .proj-list li .content-container {
+    padding: 0px 14px 14px 114px;
+    min-height: 100px;
+}
+
+.content-container h3 {
+    font-weight: lighter;
+    font-size: 34px;
+    margin: 0 0 18px 0;
+}
+
+.content-container p {
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+.proj-container h2 {
+    margin-bottom: 70px;
+}
+
+.proj-container p.tech-list {
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 12px;
+    color: #aaa;
+}
+
+.proj-container p.tech-list > span {
+    text-transform: uppercase;
+}
+
+.proj-container .simple-link {
+    text-decoration: none;
+    color: #222;
+}
+
+.proj-container .simple-link:hover {
+    color: #aaa;
+}
+
+.proj-detail .proj-type-date {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.proj-detail h3 {
+    font-size: 26px;
+    margin: 60px 0 20px 0;
+}
+
+.proj-detail .proj-features span {
+    font-weight: bold;
+}
+
+.theme-tube-alarm .proj-detail h3 {
+    color: #e03434;
+}
+
+.theme-rather-this.promo-graphic {
+    background-color: #393939;
+}
+
+.theme-rather-this h3 {
+    color: #3498db;
+}
+
+.theme-rather-this .link2 {
+    background-color: #3498db;
+}
+
+.theme-rather-this .link2:hover {
+    background-color: #2980b9;
 }

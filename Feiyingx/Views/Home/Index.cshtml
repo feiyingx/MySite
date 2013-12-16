@@ -1,24 +1,33 @@
-﻿@{
+﻿@model List<Feiyingx.Data.Models.Project>
+@{
     ViewBag.Title = "Home Page";
+    //For now, just display the latest featured project
+    var featured = Model.FirstOrDefault();
 }
 
 
 
-<div class="promo-graphic tablefy theme-tube-alarm">
+<div class="promo-graphic tablefy @featured.FeatureCssTheme">
     <div class="tablefy-cell">
-        <a href="/"><img src="@Url.Content("~/images/projects/tube-alarm-logo.png")" alt="Tube Alarm Clock" /></a>
+        <a href="@Url.Action("detail", "project", new { id=featured.Id })"><img src="@featured.FeatureMainImage" alt="@featured.ProjectTitle" /></a>
     </div>
 </div>
-<div class="promo-content tablefy theme-tube-alarm">
+<div class="promo-content tablefy @featured.FeatureCssTheme">
     <div class="tablefy-cell">
         <div class="promo-data">
-            <h2>Wake up to your favorite videos on YouTube</h2>
+            <h2>@featured.FeatureTitle</h2>
+            
             <p>
-                Tube Alarm is my first Android app released into the Play Store. The goal was to                 create a convenient away to set any song or video as my wake up tune. The alarm                 uses YouTube as your library, giving you unlimited choices to start your morning.
+                @Html.Raw(featured.FeatureDescription)
             </p>
+            
             <div class="action-btns">
-                <a href="/" class="link1 roll">Learn more</a>
-                <a href="/" class="link2">Play Store</a>
+                <a href="@Url.Action("detail", "project", new { id = featured.Id })" class="link1 roll">Learn more</a>
+                @if(featured.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))){
+                    <a href="@featured.ProjectUrl" class="link2" target="_blank">Play Store</a>
+                }else if(featured.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website))){
+                    <a href="@featured.ProjectUrl" class="link2" target="_blank">Go to site</a>
+                }
             </div>
         </div>
     </div>

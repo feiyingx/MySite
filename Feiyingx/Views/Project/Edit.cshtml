@@ -1,0 +1,202 @@
+﻿@model Feiyingx.ViewModels.EditProjectViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section head{
+    <!-- Rich Text Editor javascript plugin -->
+    <!-- CDN hosted by Cachefly -->
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script>
+        //tinymce.init({ selector: 'textarea', menubar: false });
+    </script>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/content/basic.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/content/dropzone.css")" />
+    <script src="@Url.Content("~/scripts/dropzone.js")"></script>
+    <script>
+        //Handle upload complete event from Dropzone.js
+        Dropzone.options.uploadMainImageForm = {
+            init: function () {
+                this.on("success", function (result) {
+                    //console.log(result);
+                    var jsonResponseString = result.xhr.response;
+                    var json = $.parseJSON(jsonResponseString);
+                    $("#ProjectMainImage").val(json.path);
+                });
+            }
+        };
+
+        Dropzone.options.uploadFeatureImageForm = {
+            init: function () {
+                this.on("success", function (result) {
+                    //console.log(result);
+                    var jsonResponseString = result.xhr.response;
+                    var json = $.parseJSON(jsonResponseString);
+                    $("#FeatureMainImage").val(json.path);
+                });
+            }
+        };
+    </script>
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".remove-main-image").click(function () {
+                editMainImage();
+            });
+
+            $(".remove-feature-image").click(function () {
+                editFeatureImage();
+            });
+        });
+
+        function editMainImage() {
+            $("#upload-main-image-form, .upload-container.main").show();
+            $("a.remove-main-image").hide();
+            $("img.main-image").hide();
+        }
+
+        function editFeatureImage() {
+            $("#upload-feature-image-form, .upload-container.feature").show();
+            $("a.remove-feature-image").hide();
+            $("img.feature-image").hide();
+        }
+
+        @if (!String.IsNullOrEmpty(Model.ProjectMainImage))
+        {
+            <text>
+            $("#upload-main-image-form, .upload-container.main").hide();
+            </text>
+        }
+
+        @if (!String.IsNullOrEmpty(Model.FeatureMainImage))
+        {
+            <text>
+            $("#upload-feature-image-form, .upload-container.feature").hide();
+            </text>
+        }
+    </script>
+}
+
+<div class="form-container edit-container">
+    <h2>Edit</h2>
+    @if (Model == null)
+    {
+        <p class="error">Uh-oh, check dem error logs son.</p>
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+        
+                @Html.ValidationSummary()
+                
+                <h3>Basic Info</h3>
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.ProjectTitle, new { placeholder = "Project Title" })
+                </div>
+    
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.ProjectUrl, new { placeholder = "Project URL" })
+                </div>
+                
+                <div class="field-row">
+                    <select name="Type" id="Type">
+                        @if (Model.Type == Feiyingx.DataConstants.Enumerations.ProjectType.Other)
+                        {
+                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Other))" selected="selected">Other</option>
+                        }
+                        else
+                        {
+                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Other))">Other</option>
+                        }
+                        @if (Model.Type == Feiyingx.DataConstants.Enumerations.ProjectType.Website)
+                        {
+                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website))" selected="selected">Website</option>
+                        }
+                        else
+                        {
+                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website))">Website</option>
+                        }
+                        @if (Model.Type == Feiyingx.DataConstants.Enumerations.ProjectType.Android)
+                        {
+                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))" selected="selected">Android</option>
+                        }
+                        else
+                        {
+                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))">Android</option>
+                        }
+                        
+                    </select>
+                </div>
+    
+                <div class="field-row">
+                    <input type="date" name="ProjectDate" id="ProjectDate" value="@Model.ProjectDate.ToString("yyyy-MM-dd")" />
+                </div>
+                
+    
+                <h3>Description</h3>
+                <div class="field-row">
+                    @Html.TextAreaFor(m => m.ProjectDescription, new { placeholder = "Project Description" })
+                </div>
+        
+                <h3>Features</h3>
+                <div class="field-row">
+                    @Html.TextAreaFor(m => m.ProjectFeatures, new { id = "ProjectFeatures" })
+                </div>
+    
+                <h3>Behind the Scenes</h3>
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.ProjectTech, new { placeholder="Project Tech" })
+                </div>
+    
+                <h3>Main Image (Min-Width: 300px)</h3>
+                        if (!String.IsNullOrEmpty(Model.ProjectMainImage))
+                        {
+                <a href="javascript:void(0);" class="simple-link remove-main-image">Edit</a>
+                <img src="@Model.ProjectMainImage" alt="@Model.ProjectTitle" class="main-image" />
+                        }
+                <div class="field-row upload-container main">
+
+                </div>
+                @Html.HiddenFor(m => m.ProjectMainImage)
+                <br /><br />
+                <h2 id="featured">Featured project info</h2>
+                <div class="field-row">
+                    @Html.CheckBoxFor(m => m.IsFeatured) <label for="IsFeatured">Do you want to show this bad boy on the front page?</label>
+                </div>
+                
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.FeatureTitle, new { placeholder = "Feature Title" })
+                </div>
+        
+                <h3>Feature Description</h3>
+                <div class="field-row">
+                    @Html.TextAreaFor(m => m.FeatureDescription, new { placeholder = "Feature Description" })
+                </div>
+        
+                <h3>Feature Image (Min-Width: 300px)</h3>
+                if (!String.IsNullOrEmpty(Model.FeatureMainImage))
+                {
+                <a href="javascript:void(0);" class="simple-link remove-feature-image">Edit</a>
+                <img src="@Model.FeatureMainImage" alt="@Model.ProjectTitle" class="feature-image" />
+                }
+                <div class="field-row upload-container feature">
+
+                </div>
+                @Html.HiddenFor(m => m.FeatureMainImage)
+        
+                <h3>Display theme</h3>
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.FeatureCssTheme, new { placeholder="Feature CSS Theme" })
+                </div>
+                
+                <button class="submit">Update</button>   
+        }
+    }
+    <form action="@Url.Action("image", "upload")" class="dropzone upload-form" id="upload-main-image-form"></form>
+    <form action="@Url.Action("image", "upload")" class="dropzone upload-form" id="upload-feature-image-form"></form>
+</div>
+

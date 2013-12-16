@@ -1,0 +1,88 @@
+﻿@model Feiyingx.ViewModels.NewProjectViewModel
+
+
+@{
+    ViewBag.Title = "New Project";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section head{
+    <!-- Rich Text Editor javascript plugin -->
+    <!-- CDN hosted by Cachefly -->
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script>
+        //tinymce.init({ selector: 'textarea', menubar: false });
+    </script>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/content/basic.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/content/dropzone.css")" />
+    <script src="@Url.Content("~/scripts/dropzone.js")"></script>
+    <script>
+        //Handle upload complete event from Dropzone.js
+        Dropzone.options.uploadMainImageForm = {
+            init: function () {
+                this.on("success", function (result) {
+                    //console.log(result);
+                    var jsonResponseString = result.xhr.response;
+                    var json = $.parseJSON(jsonResponseString);
+                    $("#ProjectMainImage").val(json.path);
+                });
+            }
+        };
+    </script>
+}
+
+        
+
+        <div class="form-container">
+            <h2>New Project</h2>
+            @using (Html.BeginForm())
+            {
+                
+                @Html.ValidationSummary()
+                <h3>Basic Info</h3>
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.ProjectTitle, new { placeholder="Project Title" })
+                </div>
+    
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.ProjectUrl, new { placeholder="Project URL" })
+                </div>
+                
+                <div class="field-row">
+                    <select name="Type" id="Type">
+                        <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Other))">Other</option>
+                        <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website))">Website</option>
+                        <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))">Android</option>
+                    </select>
+                </div>
+    
+                <div class="field-row">
+                    <input type="date" name="ProjectDate" id="ProjectDate" />
+                </div>
+                
+    
+                <h3>Description</h3>
+                <div class="field-row">
+                    @Html.TextAreaFor(m => m.ProjectDescription, new { placeholder="Project Description" })
+                </div>
+        
+                <h3>Features</h3>
+                <div class="field-row">
+                    @Html.TextAreaFor(m => m.ProjectFeatures, new { id="ProjectFeatures" })
+                </div>
+    
+                <h3>Behind the Scenes</h3>
+                <div class="field-row">
+                    @Html.TextAreaFor(m => m.ProjectTech, new { id="ProjectTech" })
+                </div>
+    
+                <h3>Main Image (Min-Width: 300px)</h3>
+                <div class="field-row upload-container">
+
+                </div>
+                @Html.HiddenFor(m => m.ProjectMainImage)
+                <button class="submit">Create</button>
+                
+            }
+
+            <form action="@Url.Action("image","upload")" class="dropzone upload-form" id="upload-main-image-form"></form>
+            </div>

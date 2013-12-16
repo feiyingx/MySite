@@ -1,0 +1,160 @@
+﻿.form-container {
+    width: 660px;
+    margin: 0 auto;
+    padding: 50px;
+    overflow-y: auto;
+}
+
+.form-container h2{
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+.form-container h3 {
+    font-size: 20px;
+    color: #e03434;
+    margin: 25px 0 15px 0;
+    text-transform: uppercase;
+}
+
+.form-container input, .form-container textarea {
+    width: 628px;
+    font-size: 18px;
+    line-height: 1.5;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.form-container textarea {
+    font-family: "open-sans", "museo-sans", "futura-pt";
+    height: 300px;
+}
+
+.field-row {
+    padding: 5px 0;
+}
+
+.field-row select{
+    width: 660px;
+    font-size: 18px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    padding: 10px 12px;
+}
+
+.dropzone {
+    border:3px dashed #ccc!important;
+}
+
+.upload-container {
+    height: 360px;
+}
+
+.upload-form {
+    position: absolute!important;
+    width: 660px;
+    height: 360px;
+}
+
+#upload-main-image-form {
+    top: 1440px;
+}
+
+.edit-container #upload-feature-image-form {
+    top: 2505px;
+}
+
+button.submit {
+    margin-top: 30px;
+    border: none;
+    background-color: #2ecc71;
+    padding: 10px 30px;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    cursor: pointer;
+}
+
+button.submit:hover {
+    background-color: #27ae60;
+}
+
+.warning, .error {
+    padding: 10px 20px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    color: #fff;
+    background-color: #f39c12;
+    font-size: 13px;
+    text-shadow:0 1px 0 #888;
+}
+
+.error {
+    background-color: #e74c3c;
+}
+
+table, input[type=date] {
+    font-family: "open-sans", "museo-sans", "Helvetica"!important;
+}
+
+table thead tr {
+    font-weight: bold;
+    border-bottom: 2px solid #222;
+    margin-bottom: 5px;
+}
+
+table thead th {
+    text-align: left;
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+
+td {
+  padding: 10px;  
+}
+
+tbody tr:hover {
+    
+}
+
+td a, .simple-link {
+    text-decoration: none;
+    color: #3498db;
+}
+
+td a:hover, .simple-link:hover {
+    color: #2980b9;
+}
+
+.form-container img{
+    max-width: 660px;
+    height: 360px;
+    text-align: center;
+    display: block;
+}
+
+.remove-main-image {
+    display: block;
+}
+
+.form-container input[type=checkbox] {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+}
+
+.admin-nav li {
+    padding: 15px 0;
+}
+
+.admin-nav li a {
+    font-size: 30px;
+    text-decoration: none;
+    color: #1abc9c;
+}
+
+.admin-nav li a:hover {
+    color: #16a085;
+}

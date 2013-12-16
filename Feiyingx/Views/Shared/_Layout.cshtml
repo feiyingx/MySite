@@ -55,8 +55,7 @@
 
             //Display our new page to complete the transition
             function completePageLoadTransition() {
-                $(".col-right").hide();
-                setTimeout(function () { $(".loading").hide(); $(".col-right").fadeIn(); }, 1000); //Give at least 1 second of load time to avoid jerky UI
+                setTimeout(function () { $(".loading").hide(); }, 100); //Give some load time to avoid jerky UI
             }
         </script>
     </body>

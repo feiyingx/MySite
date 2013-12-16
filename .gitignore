@@ -181,3 +181,9 @@ $RECYCLE.BIN/
 
 # Take out config files
 *.config
+
+# Do not include uploaded image folder
+uploads/
+
+# Do not include AccountController
+Controllers/AccountController.cs

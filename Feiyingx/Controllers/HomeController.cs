@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Feiyingx.Data.Models;
+using Feiyingx.Data.Repos;
+using Feiyingx.Helpers;
 
 namespace Feiyingx.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+        private ProjectRepo projectRepo;
 
-            return View();
+        public HomeController()
+        {
+            projectRepo = new ProjectRepo();
         }
 
-        public ActionResult About()
+        /// <summary>
+        /// Get the featured projects and display it on homepage
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
         {
-            ViewBag.Message = "Your app description page.";
+            List<Project> featuredProjects = projectRepo.Featured();
+            return View(featuredProjects);
+        }
 
+        [AdminAuthenticationRequired]
+        public ActionResult Admin()
+        {
             return View();
         }
 
