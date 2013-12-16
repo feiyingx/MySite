@@ -5,23 +5,6 @@
 
 @section scripts{
     <script>
-        (function ($) {
-            $.fn.getCursorPosition = function () {
-                var input = this.get(0);
-                if (!input) return; // No (input) element found
-                if ('selectionStart' in input) {
-                    // Standard-compliant browsers
-                    return input.selectionStart;
-                } else if (document.selection) {
-                    // IE
-                    input.focus();
-                    var sel = document.selection.createRange();
-                    var selLen = document.selection.createRange().text.length;
-                    sel.moveStart('character', -input.value.length);
-                    return sel.text.length - selLen;
-                }
-            }
-        })(jQuery);
 
         //Helper function for the prompt UI to add a new line in the terminal
         function addPromptLine(promptContainer, message) {
@@ -39,6 +22,10 @@
             $(section).show();
             $("input", section).focus();
             $("textarea", section).focus();
+            //Also attach the class 'active' to the input in this section which is used to properly set focus to it if we lose focus
+            $("input.active, textarea.active").removeClass("active"); //First remove the class from currently active input and move it to this input
+            $("input", section).addClass("active");
+            $("textarea", section).addClass("active");
         }
 
         function sendEmail() {
@@ -71,6 +58,25 @@
         function beginSending() {
             displaySection(8);
             updateSendProgress(); //This is just a UI thing also
+            var firstName = $("input[name=FirstName]").val();
+            var lastName = $("input[name=LastName]").val();
+            var email = $("input[name=Email]").val();
+            var reason = $("input[name=Reason]").val();
+            var message = $("textarea[name=Message]").val();
+            var data = {
+                FirstName: firstName,
+                LastName: lastName,
+                Email: email,
+                Reason: reason,
+                Message: message
+            };
+            console.log(data);
+            $.ajax({
+                url: "@Url.Action("sendemail","contact")",
+                data: data,
+                type: "POST",
+                success: onSendComplete
+            });
         }
 
         var isSendingComplete = false;
@@ -91,6 +97,11 @@
         }
 
         $(function () {
+            $(".col-right").addClass("contact");
+            $(".col-right").bind('click', function () {
+                //When user clicks anywhere on the page, set focus to the current active input or textarea
+                $(".col-right input.active, .col-right textarea.active").focus();
+            });
             $("input[type=text], textarea").bind('keyup', function (e) {
                 var code = e.keyCode || e.which;
                 if (code == 13) {
@@ -194,13 +205,13 @@
 }
 
 <div class="contact-container terminal">
-    <p>Last login: Sun Dec 12 15:12:31</p>
+    <p>Last login: @DateTime.Now.ToString("ddd MMM d HH:mm:ss")</p>
     <p>Email contact form terminal. Press [Enter] to complete each prompt.</p>
         <br />
     <div class="first-name" data-section="1">
     <p>What's your first name: </p>
     <p>
-    <span>=></span><input type="text" name="FirstName" autocomplete="off" autofocus="autofocus" />
+    <span>=></span><input type="text" class="active" name="FirstName" autocomplete="off" autofocus="autofocus" />
     </p>
     </div>
 
@@ -214,7 +225,7 @@
     <div class="email" style="display:none;" data-section="3">
     <p>What's your email:</p>    
     <p>
-    <span>=></span><input type="text" name="Email" autocomplete="off"/>
+    <span>=></span><input type="text" name="Email" autocomplete="off" spellcheck="false"/>
     </p>
     </div>
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Feiyingx.DataConstants;
+using Feiyingx.Code.DataConstants;
 
 namespace Feiyingx.ViewModels
 {

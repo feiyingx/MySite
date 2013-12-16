@@ -677,6 +677,7 @@ h2{
 }
 
 .contact-container {
+    padding: 80px 75px 80px 150px;
     background-color: #000;
     width: 600px;
     margin: 0 auto;
@@ -719,4 +720,8 @@ em.double-prompt {
 
 .send-complete-copy em.send-success {
     font-weight: bold;
+}
+
+.contact {
+    background-color: #000;
 }
