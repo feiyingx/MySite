@@ -58,11 +58,11 @@
         function beginSending() {
             displaySection(8);
             updateSendProgress(); //This is just a UI thing also
-            var firstName = $("input[name=FirstName]").val();
-            var lastName = $("input[name=LastName]").val();
-            var email = $("input[name=Email]").val();
-            var reason = $("input[name=Reason]").val();
-            var message = $("textarea[name=Message]").val();
+            var firstName = $("input[name=FirstName]").val().trim();
+            var lastName = $("input[name=LastName]").val().trim();
+            var email = $("input[name=Email]").val().trim();
+            var reason = $("input[name=Reason]").val().trim();
+            var message = $("textarea[name=Message]").val().trim();
             var data = {
                 FirstName: firstName,
                 LastName: lastName,
