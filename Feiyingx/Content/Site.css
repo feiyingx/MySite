@@ -285,6 +285,7 @@ a#nav-logo {
     float: left;
     height: 100%;
     padding-left: 75px;
+    position: fixed;
 }
 
 .promo-graphic a{
@@ -314,7 +315,10 @@ a#nav-logo {
 .promo-content .promo-data, .proj-detail {
     width: 80%;
     margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+
 
 .tablefy {
     display: table;
