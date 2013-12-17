@@ -725,3 +725,42 @@ em.double-prompt {
 .contact {
     background-color: #000;
 }
+
+.error-container {
+    height: 100%;
+    padding: 50px 75px 50px 150px;
+    position: fixed;
+    color: #fff;
+}
+
+.error-container h2{
+    font-size: 60px;
+    background-color: #000;
+    opacity: 0.75;
+    padding: 15px 30px;
+    display:inline-block;
+    font-family: "futura-pt";
+    font-weight: lighter;
+}
+
+.error-container p {
+    font-size: 20px;
+    background-color: #000;
+    opacity: 0.75;
+    padding: 15px 30px;
+    font-family: "futura-pt";
+    font-weight: lighter;
+    line-height: 1.5;
+}
+
+.error-container .nelson {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.not-found {
+    background-image: url(/images/socks.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}

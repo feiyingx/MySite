@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "NotFound";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+    <script src="/scripts/backstretch.js"></script>
+    <script>
+        $.backstretch("/images/socks.jpg");
+    </script>
+}
+<div class="error-container">
+<h2>404</h2>
+    <p>Whatever it was, it was not found&hellip; just like my missing sock.
+        <br />
+    Dear Sock, if you are reading this, please come home.</p>
+    <img src="/images/nelson.png" alt="404 - Something smells fishy.." class="nelson" />
+</div>

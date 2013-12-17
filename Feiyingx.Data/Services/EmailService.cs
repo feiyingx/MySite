@@ -16,7 +16,7 @@ namespace Feiyingx.Data.Services
             SendEmail(Config.EmailSettings.ContactUsRecipient(), subject, body);
         }
 
-        private static void SendEmail(string toAddress, string subject, string body)
+        public static void SendEmail(string toAddress, string subject, string body)
         {
             SmtpClient smtp = null;
             string username = Config.EmailSettings.Username();

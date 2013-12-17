@@ -58,6 +58,10 @@
 }
 
 #upload-main-image-form {
+    top: 1710px;
+}
+
+.edit-container #upload-main-image-form {
     top: 1440px;
 }
 
