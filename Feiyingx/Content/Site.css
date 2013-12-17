@@ -219,12 +219,16 @@ body {
 
 .icon-linkedin {
     background-image:url('/images/icons.png');
-    background-position: 1px -490px;
+    background-position: -71px -490px;
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    
 }
 
-.icon-linkedin.on {
-    background-image:url('/images/icons.png');
-    background-position: -71px -490px;
+.icon-linkedin:hover {
+    -webkit-filter: grayscale(0%);
 }
 
 #nav-logo:after {
@@ -569,7 +573,7 @@ h2{
     50% {opacity: .8;}
 }
 
-.proj-container {
+.proj-container, .reco-container {
     padding: 50px 75px 50px 150px;    
     margin: 0 auto;
 }
@@ -606,7 +610,7 @@ h2{
     font-size: 16px;
 }
 
-.proj-container h2 {
+.proj-container h2, .reco-container h2 {
     margin-bottom: 70px;
 }
 
@@ -818,4 +822,27 @@ em.double-prompt {
       z-index: -1;
       border-radius: 50%;
       box-shadow: inset 0px 8px 48px #ddd;
+}
+
+.reco-container p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.reco-container em.name {
+    font-size: 24px;
+    font-weight: lighter;
+    padding-right: 15px;
+}
+
+.reco-container em.title {
+    
+}
+
+.reco-container .person-section {
+    margin-bottom: 10px;
+}
+
+.reco-container ul li {
+    margin: 0 0 50px 0;
 }
