@@ -104,29 +104,29 @@
                 
                 <div class="field-row">
                     <select name="Type" id="Type">
-                        @if (Model.Type == Feiyingx.DataConstants.Enumerations.ProjectType.Other)
+                        @if (Model.Type == Feiyingx.Code.DataConstants.Enumerations.ProjectType.Other)
                         {
-                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Other))" selected="selected">Other</option>
+                            <option value="@((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Other))" selected="selected">Other</option>
                         }
                         else
                         {
-                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Other))">Other</option>
+                            <option value="@((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Other))">Other</option>
                         }
-                        @if (Model.Type == Feiyingx.DataConstants.Enumerations.ProjectType.Website)
+                        @if (Model.Type == Feiyingx.Code.DataConstants.Enumerations.ProjectType.Website)
                         {
-                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website))" selected="selected">Website</option>
-                        }
-                        else
-                        {
-                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website))">Website</option>
-                        }
-                        @if (Model.Type == Feiyingx.DataConstants.Enumerations.ProjectType.Android)
-                        {
-                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))" selected="selected">Android</option>
+                            <option value="@((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Website))" selected="selected">Website</option>
                         }
                         else
                         {
-                            <option value="@((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))">Android</option>
+                            <option value="@((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Website))">Website</option>
+                        }
+                        @if (Model.Type == Feiyingx.Code.DataConstants.Enumerations.ProjectType.Android)
+                        {
+                            <option value="@((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Android))" selected="selected">Android</option>
+                        }
+                        else
+                        {
+                            <option value="@((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Android))">Android</option>
                         }
                         
                     </select>

@@ -285,6 +285,7 @@ a#nav-logo {
     float: left;
     height: 100%;
     padding-left: 75px;
+    position: fixed;
 }
 
 .promo-graphic a{
@@ -314,7 +315,10 @@ a#nav-logo {
 .promo-content .promo-data, .proj-detail {
     width: 80%;
     margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+
 
 .tablefy {
     display: table;
@@ -659,4 +663,65 @@ h2{
 
 .theme-rather-this .link2:hover {
     background-color: #2980b9;
+}
+
+/* Contact page css */
+@font-face {
+    font-family: AndaleMono;
+    src: url('/content/fonts/AndaleMono.ttf');
+}
+.terminal {
+    font-family: AndaleMono!important;
+    color: #63de00!important;
+    font-size: 13px;
+}
+
+.contact-container {
+    padding: 80px 75px 80px 150px;
+    background-color: #000;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.terminal input, .terminal textarea {
+    border: none;
+    background-color: #000;
+    font-family: AndaleMono!important;
+    color: #63de00!important;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 0;
+    margin: 0;
+    width: 575px;
+}
+.terminal input:focus, .terminal textarea {
+    outline:none;
+}
+
+.terminal textarea {
+    resize: none;
+    height: 250px;
+    overflow: hidden;
+}
+
+label.prompt {
+    float: left;
+    padding-right: 3px;
+}
+
+.terminal p span {
+    padding-right: 3px;
+}
+
+em.double-prompt {
+    color: #0276FD;
+    padding-right: 3px;
+}
+
+.send-complete-copy em.send-success {
+    font-weight: bold;
+}
+
+.contact {
+    background-color: #000;
 }

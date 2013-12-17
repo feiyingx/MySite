@@ -23,9 +23,9 @@
             
             <div class="action-btns">
                 <a href="@Url.Action("detail", "project", new { id = featured.Id })" class="link1 roll">Learn more</a>
-                @if(featured.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))){
+                @if(featured.Type == ((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Android))){
                     <a href="@featured.ProjectUrl" class="link2" target="_blank">Play Store</a>
-                }else if(featured.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website))){
+                }else if(featured.Type == ((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Website))){
                     <a href="@featured.ProjectUrl" class="link2" target="_blank">Go to site</a>
                 }
             </div>

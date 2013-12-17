@@ -30,10 +30,10 @@
             </p>
 
             <div class="action-btns">
-                @if(Model.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Android))){
+                @if(Model.Type == ((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Android))){
                     <a href="@Model.ProjectUrl" class="link2" target="_blank">Play Store</a>
                 }
-                else if (Model.Type == ((int)(Feiyingx.DataConstants.Enumerations.ProjectType.Website)))
+                else if (Model.Type == ((int)(Feiyingx.Code.DataConstants.Enumerations.ProjectType.Website)))
                 {
                     <a href="@Model.ProjectUrl" class="link2" target="_blank">Go to site</a>
                 }

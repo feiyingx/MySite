@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Feiyingx.DataConstants;
+using Feiyingx.Code.DataConstants;
 using Feiyingx.Helpers;
 
 namespace Feiyingx.Controllers

@@ -6,6 +6,12 @@
     String recToggleClass = (currentController == "recommendation") ? "on" : "";
     String expToggleClass = (currentController == "experience") ? "on" : "";
     String eduToggleClass = (currentController == "education") ? "on" : "";
+
+    //Check for the current action so we can highlight the appropriate nav link
+    String currentAction = ViewContext.RouteData.Values["Action"].ToString().ToLower();
+    String emailToggleClass = (currentAction == "email") ? "on" : "";
+    String textToggleClass = (currentAction == "text") ? "on" : "";
+    String videoToggleClass = (currentAction == "video") ? "on" : "";
 }
 <nav id="main-nav" class="tablefy">
     
@@ -18,10 +24,10 @@
         <li><a href="@Url.Action("index", "education")" class="icon-edu @eduToggleClass">Education</a></li>*@
     </ul>
     <ul class="contact-links">
-        <li><a href="#" class="icon-text">text me</a></li>
-        <li><a href="#" class="icon-email">email me</a></li>
-        <li><a href="#" class="icon-video">video chat</a></li>
-        <li><a href="#" class="icon-linkedin"></a></li>
+        <li><a href="@Url.Action("text","contact")" class="icon-text @textToggleClass">text me</a></li>
+        <li><a href="@Url.Action("email","contact")" class="icon-email @emailToggleClass">email me</a></li>
+        @*<li><a href="@Url.Action("video","contact")" class="icon-video @videoToggleClass">video chat</a></li*@>
+        <li><a href="www.linkedin.com/in/k3nny" class="icon-linkedin" target="_blank"></a></li>
     </ul>
     </div>
 </nav>

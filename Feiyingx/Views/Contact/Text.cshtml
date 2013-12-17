@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "Text";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section scripts{
+    <script>
+
+        //Helper function for the prompt UI to add a new line in the terminal
+        function addPromptLine(promptContainer, message) {
+            var prevRow = $("<p><span>=></span>" + message + "</p>");
+            $(prevRow).insertBefore(promptContainer);
+        }
+
+        function displayMessageLengthCount() {
+            var count = 500-$("textarea[name=Message]").val().trim().length;
+            $("em.message-length-count").html(count);
+        }
+
+        function isValidMessageLength(input) {
+            return (input.trim().length <= 500)
+        }
+
+        function displaySection(sectionNum){
+            var section = $("div[data-section=" + sectionNum + "]");
+            $(section).show();
+            $("input", section).focus();
+            $("textarea", section).focus();
+            //Also attach the class 'active' to the input in this section which is used to properly set focus to it if we lose focus
+            $("input.active, textarea.active").removeClass("active"); //First remove the class from currently active input and move it to this input
+            $("input", section).addClass("active");
+            $("textarea", section).addClass("active");
+        }
+
+        function sendText() {
+            //This is just a UI thing, it doesn't really do anything
+            beginCompressUI();
+        }
+
+        //This is just a UI thing, it doesn't really do anything
+        function beginCompressUI() {
+            displaySection(7);
+            updateCompressProgress();
+        }
+
+        var compressProgress = 0;
+        function updateCompressProgress(){
+            compressProgress++;
+            var percentContainer = $(".compress-copy .compress-percent");
+            $(percentContainer).html(compressProgress);
+            if (compressProgress < 100) {
+                var progressTime = Math.floor((Math.random() * 30) + 1);
+                setTimeout(function () { updateCompressProgress(); }, progressTime);
+            } else {
+                //Done, start next step
+                var doneCopy = $(".compress-copy .compress-done");
+                $(doneCopy).show();
+                beginSending(); //Start sending the email
+            }
+        }
+
+        function beginSending() {
+            displaySection(8);
+            updateSendProgress(); //This is just a UI thing also
+            var firstName = $("input[name=FirstName]").val().trim();
+            var lastName = $("input[name=LastName]").val().trim();
+            var message = $("textarea[name=Message]").val().trim();
+            var data = {
+                FirstName: firstName,
+                LastName: lastName,
+                Message: message
+            };
+            //console.log(data);
+            $.ajax({
+                url: "@Url.Action("sendtext","contact")",
+                data: data,
+                type: "POST",
+                success: onSendComplete
+            });
+        }
+
+        var isSendingComplete = false;
+        function updateSendProgress() {
+            if (!isSendingComplete) {
+                var rateKiB = Math.floor(Math.random() * 1000);
+                $(".sending-copy .send-rate-kib").html(rateKiB);
+                var progressTime = Math.floor((Math.random() * 500) + 1) + Math.floor((Math.random() * 500) + 1);
+                setTimeout(function () { updateSendProgress(); }, progressTime);
+            }
+        }
+
+        function onSendComplete() {
+            isSendingComplete = true;
+            $(".sending-copy .send-done").show();
+            //Show send complete
+            setTimeout(function () { displaySection(9); }, 300);
+        }
+
+        $(function () {
+            $(".col-right").addClass("contact");
+            $(".col-right").bind('click', function () {
+                //When user clicks anywhere on the page, set focus to the current active input or textarea
+                $(".col-right input.active, .col-right textarea.active").focus();
+            });
+            $("textarea[name=Message]").bind('keydown', function (e) {
+                displayMessageLengthCount();//Track length of the message
+            });
+            $("input[type=text], textarea").bind('keyup', function (e) {
+                var code = e.keyCode || e.which;
+                if (code == 13) {
+                    var inputVal = $(this).val();
+                    if (inputVal.trim() == "") {
+                        //If user didn't enter anything, then display the prompt again
+                        var promptContainer = $(this).parent();
+                        addPromptLine(promptContainer, "");
+                        //Clear the input
+                        $(this).val("");
+                    } else {
+                        //User entered a value
+                        //If this is the email input or the reason input, then validate the input, else display the next step
+                        //And if this is the final step, then submit form
+                        var section = $(this).parent().parent().attr("data-section");
+                        
+                        switch (parseInt(section)) {
+                            case 1: //First name
+                                //Display next section
+                                displaySection(2);
+                                //Disable this input
+                                $(this).prop('disabled', true);
+                                break;
+                            case 2: //Last name
+                                //Display next section
+                                displaySection(5);
+                                $(this).prop('disabled', true);
+                                break;
+                            case 5: //Message
+                                var input = $(this).val().trim();
+                                if (input != "") {
+                                    if (isValidMessageLength(input)) {
+                                        //Display next section
+                                        displaySection(6);
+                                        $(this).prop('disabled', true);
+                                    } else {
+                                        //If user entered invalid input
+                                        var promptContainer = $(this).parent();
+                                        addPromptLine(promptContainer, input);
+                                        addPromptLine(promptContainer, "Message is too long.");
+                                        //Clear the input
+                                        $(this).val("");
+                                    }
+                                } else {
+                                    //If user entered invalid input
+                                    var promptContainer = $(this).parent();
+                                    addPromptLine(promptContainer, input);
+                                    //Clear the input
+                                    $(this).val("");
+                                }
+                                break;
+                            case 6: //Submit 'text'
+                                var input = $(this).val().trim();
+                                if (input == "") {
+                                    var promptContainer = $(this).parent();
+                                    addPromptLine(promptContainer, input);
+                                    //Clear the input
+                                    $(this).val("");
+                                } else if (input != "text") {
+                                    var promptContainer = $(this).parent();
+                                    addPromptLine(promptContainer, input);
+                                    addPromptLine(promptContainer, "Invalid command, please enter 'text'.");
+                                    //Clear the input
+                                    $(this).val("");
+                                } else {
+                                    //Send the form
+                                    $(this).prop('disabled', true);
+                                    sendText();
+                                }
+                                break;
+                            default:
+                                break;
+                        }                        
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+<div class="contact-container terminal">
+    <p>Last login: @DateTime.Now.ToString("ddd MMM d HH:mm:ss")</p>
+    <p>SMS Texting terminal. Press [Enter] to complete each prompt.</p>
+        <br />
+    <div class="first-name" data-section="1">
+    <p>What's your first name: </p>
+    <p>
+    <span>=></span><input type="text" class="active" name="FirstName" autocomplete="off" autofocus="autofocus" />
+    </p>
+    </div>
+
+    <div class="last-name" style="display:none;" data-section="2">
+    <p>What's your last name:</p>
+    <p>
+    <span>=></span><input type="text" name="LastName" autocomplete="off"/>
+    </p>
+    </div>
+    
+    <div class="message" style="display:none;" data-section="5">
+    <p>Message (<em class="message-length-count">500</em> chars max): </p>
+    <p>
+        <label class="prompt">=></label><textarea name="Message" spellcheck="false"></textarea>
+    </p>
+    </div>
+
+    <div class="submit" style="display:none;" data-section="6">
+        <p>Enter 'text' to transmit your message:</p>
+        <p><span>=></span><input type="text" class="send-input" autocomplete="off"/></p>
+    </div>
+
+    <div class="compress-progress" style="display:none;" data-section="7">
+        <p class="compress-copy">remote: Compressing objects: <em class="compress-percent">9</em>%, <em class="compress-done" style="display:none;">done.</em></p>
+    </div>
+    <div class="send-progress" style="display:none;" data-section="8">
+        <p class="sending-copy">Sending at: <em class="send-rate-kib">260</em> KiB/s, <em class="send-done" style="display:none;">done.</em></p>
+    </div>
+    <div class="send-complete" style="display:none;" data-section="9">
+        <p class="send-complete-copy"><em class="double-prompt">==></em><em class="send-success">Text has been sent successfully!</em></p>
+    </div>
+</div>
+
