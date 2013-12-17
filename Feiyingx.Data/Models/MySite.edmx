@@ -7,6 +7,7 @@
     <Schema Namespace="MySiteModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="MySiteModelStoreContainer">
           <EntitySet Name="Projects" EntityType="MySiteModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recommendations" EntityType="MySiteModel.Store.Recommendations" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="Projects">
           <Key>
@@ -30,12 +31,30 @@
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateModified" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Recommendations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" MaxLength="1000" />
+          <Property Name="LastName" Type="varchar" MaxLength="1000" />
+          <Property Name="PositionTitle" Type="varchar" MaxLength="1000" />
+          <Property Name="LinkedIn" Type="varchar" MaxLength="1000" />
+          <Property Name="Message" Type="varchar" MaxLength="1000" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="1000" />
+          <Property Name="CompanyUrl" Type="varchar" MaxLength="1000" />
+          <Property Name="CssClass" Type="varchar" MaxLength="1000" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="RecommendationDate" Type="datetime" Nullable="false" />
+        </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MySiteModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MySiteEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Projects" EntityType="MySiteModel.Project" />
+          <EntitySet Name="Recommendations" EntityType="MySiteModel.Recommendation" />
         </EntityContainer>
         <EntityType Name="Project">
           <Key>
@@ -58,6 +77,23 @@
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Type="String" Name="FeatureCssTheme" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PositionTitle" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LinkedIn" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyName" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyUrl" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CssClass" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="RecommendationDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Message" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -85,6 +121,24 @@
                 <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recommendations">
+            <EntityTypeMapping TypeName="MySiteModel.Recommendation">
+              <MappingFragment StoreEntitySet="Recommendations">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="RecommendationDate" ColumnName="RecommendationDate" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CssClass" ColumnName="CssClass" />
+                <ScalarProperty Name="CompanyUrl" ColumnName="CompanyUrl" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+                <ScalarProperty Name="PositionTitle" ColumnName="PositionTitle" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

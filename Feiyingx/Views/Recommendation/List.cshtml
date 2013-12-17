@@ -1,0 +1,40 @@
+﻿@model List<Feiyingx.Data.Models.Recommendation>
+@{
+    ViewBag.Title = "My Recommendations";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
+    bool isEmpty = Model == null || Model.Count == 0;
+}
+
+<div class="form-container">
+<h2>Recommendations List</h2>
+
+@if(isEmpty){
+    <p class="warning">Hey where are your recommendations?</p>
+}else{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Company</th>
+                <th>Rec date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var rec in Model){
+                <tr>
+                    <td>@rec.Id</td>
+                    <td>@rec.FirstName @rec.LastName</td>
+                    <td>@rec.PositionTitle</td>
+                    <td>@rec.CompanyName</td>
+                    <td>@rec.RecommendationDate.ToString("MM/dd/yyyy")</td>
+                    <td><a href="@Url.Action("edit", "recommendation", new { id=rec.Id })">Edit &raquo;</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+</div>

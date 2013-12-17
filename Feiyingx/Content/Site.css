@@ -846,3 +846,12 @@ em.double-prompt {
 .reco-container ul li {
     margin: 0 0 50px 0;
 }
+
+.reco-container a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+.reco-container a:hover {
+    color: #2980b9;
+}

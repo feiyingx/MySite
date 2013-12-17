@@ -1,0 +1,53 @@
+﻿@model Feiyingx.ViewModels.NewRecommendationViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-container">
+            <h2>New Recommendation</h2>
+            @using (Html.BeginForm())
+            {
+                
+                @Html.ValidationSummary()
+                <h3>Basic Info</h3>
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.FirstName, new { placeholder="First Name" })
+                </div>
+    
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.LastName, new { placeholder="Last Name" })
+                </div>
+                
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.PositionTitle, new { placeholder="Position Title" })
+                </div>
+                
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.LinkedIn, new { placeholder="LinkedIn Url" })
+                </div>
+                
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.CompanyName, new { placeholder="Company" })
+                </div>
+                
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.CompanyUrl, new { placeholder="Company URL" })
+                </div>
+                
+                <div class="field-row">
+                    @Html.TextAreaFor(m => m.Message, new { placeholder="Recommendation Message" })
+                </div>
+    
+                <div class="field-row">
+                    <input type="date" name="RecommendationDate" id="ProjectDate" />
+                </div>
+                
+                <div class="field-row">
+                    @Html.TextBoxFor(m => m.CssClass, new { placeholder="CSS Class" })
+                </div>
+                
+                <button class="submit">Create</button>
+                
+            }
+            </div>

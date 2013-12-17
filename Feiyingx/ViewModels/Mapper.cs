@@ -16,6 +16,9 @@ namespace Feiyingx.ViewModels
         /// <returns></returns>
         public static Project From(NewProjectViewModel vm)
         {
+            if (vm == null)
+                return null;
+
             Project result = new Project();
             result.FeatureDescription = vm.FeatureDescription;
             result.FeatureMainImage = vm.FeatureMainImage;
@@ -93,6 +96,65 @@ namespace Feiyingx.ViewModels
             result.FeatureCssTheme = proj.FeatureCssTheme;
 
             return result;
+        }
+
+        public static Recommendation From(NewRecommendationViewModel vm)
+        {
+            if (vm == null)
+                return null;
+
+            Recommendation rec = new Recommendation();
+            rec.CompanyName = vm.CompanyName;
+            rec.CompanyUrl = vm.CompanyUrl;
+            rec.CssClass = vm.CssClass;
+            rec.FirstName = vm.FirstName;
+            rec.LastName = vm.LastName;
+            rec.LinkedIn = vm.LinkedIn;
+            rec.Message = vm.Message;
+            rec.PositionTitle = vm.PositionTitle;
+            rec.RecommendationDate = vm.RecommendationDate;
+
+            return rec;
+        }
+
+        public static EditRecommendationViewModel ToEditRecommendationViewModel(Recommendation rec)
+        {
+            if (rec == null)
+                return null;
+
+            EditRecommendationViewModel vm = new EditRecommendationViewModel();
+            vm.Id = rec.Id;
+            vm.CompanyName = rec.CompanyName;
+            vm.CompanyUrl = rec.CompanyUrl;
+            vm.CssClass = rec.CssClass;
+            vm.FirstName = rec.FirstName;
+            vm.LastName = rec.LastName;
+            vm.LinkedIn = rec.LinkedIn;
+            vm.Message = rec.Message;
+            vm.PositionTitle = rec.PositionTitle;
+            vm.RecommendationDate = rec.RecommendationDate;
+
+            return vm;
+        }
+
+        public static Recommendation From(EditRecommendationViewModel vm)
+        {
+            if (vm == null)
+                return null;
+
+            Recommendation rec = new Recommendation();
+            rec.Id = vm.Id;
+            rec.CompanyName = vm.CompanyName;
+            rec.CompanyUrl = vm.CompanyUrl;
+            rec.CssClass = vm.CssClass;
+            rec.FirstName = vm.FirstName;
+            rec.LastName = vm.LastName;
+            rec.LinkedIn = vm.LinkedIn;
+            rec.Message = vm.Message;
+            rec.PositionTitle = vm.PositionTitle;
+            rec.RecommendationDate = vm.RecommendationDate;
+
+            return rec;
         }
     }
 }

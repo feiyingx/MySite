@@ -26,5 +26,6 @@ namespace Feiyingx.Data.Models
         }
     
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Recommendation> Recommendations { get; set; }
     }
 }
