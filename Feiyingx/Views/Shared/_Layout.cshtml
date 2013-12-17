@@ -1,5 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
@@ -57,6 +61,22 @@
             function completePageLoadTransition() {
                 setTimeout(function () { $(".loading").hide(); }, 100); //Give some load time to avoid jerky UI
             }
+
+            (function ($) {
+                "use strict";
+
+                // Detecting IE
+                var oldIE;
+                if ($('html').is('.ie6, .ie7, .ie8, .ie9')) {
+                    oldIE = true;
+                }
+
+                if (oldIE) {
+                    //Redirect to no IE
+                    window.location = "@Url.Action("problem","error")";
+                } 
+
+            }(jQuery));
         </script>
     </body>
 </html>

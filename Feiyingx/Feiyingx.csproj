@@ -267,7 +267,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\AndaleMono.ttf" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\chrome.png" />
+    <Content Include="Images\firefox.png" />
     <Content Include="Images\icons.png" />
+    <Content Include="Images\jackie-chan.jpg" />
     <Content Include="Images\nelson.png" />
     <Content Include="Images\projects\tube-alarm-logo.png" />
     <Content Include="Images\socks.JPG" />
@@ -336,6 +339,7 @@
     <Content Include="Views\Contact\Video.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Error\Problem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

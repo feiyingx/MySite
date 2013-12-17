@@ -19,5 +19,19 @@ namespace Feiyingx.Controllers
         {
             return View();
         }
+
+        public ActionResult Problem()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// For testing server error
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Exception()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
