@@ -88,7 +88,8 @@
             }
         }
 
-        function onSendComplete() {
+        function onSendComplete(result) {
+            console.log(result);
             isSendingComplete = true;
             $(".sending-copy .send-done").show();
             //Show send complete

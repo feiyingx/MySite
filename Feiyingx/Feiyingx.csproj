@@ -47,6 +47,10 @@
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\RestSharp.104.4.0\lib\net35-client\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -116,6 +120,10 @@
     <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio.Api, Version=3.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Twilio.3.6.10\lib\3.5\Twilio.Api.dll</HintPath>
     </Reference>
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -279,6 +287,27 @@
     <Content Include="Images\socks2.jpg" />
     <Content Include="Images\spritemap%402x.png" />
     <Content Include="Images\spritemap.png" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net35-client\RestSharp.dll" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net35-client\RestSharp.xml" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net35\RestSharp.dll" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net35\RestSharp.xml" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net4-client\RestSharp.dll" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net4-client\RestSharp.xml" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net4\RestSharp.dll" />
+    <Content Include="lib\RestSharp.104.4.0\lib\net4\RestSharp.xml" />
+    <Content Include="lib\RestSharp.104.4.0\lib\sl4-wp71\RestSharp.WindowsPhone.dll" />
+    <Content Include="lib\RestSharp.104.4.0\lib\sl4-wp71\RestSharp.WindowsPhone.xml" />
+    <Content Include="lib\RestSharp.104.4.0\lib\sl4\RestSharp.Silverlight.dll" />
+    <Content Include="lib\RestSharp.104.4.0\lib\sl4\RestSharp.Silverlight.xml" />
+    <Content Include="lib\Twilio.3.6.10\lib\3.5\Twilio.Api.dll" />
+    <Content Include="lib\Twilio.3.6.10\lib\3.5\Twilio.Api.pdb" />
+    <Content Include="lib\Twilio.3.6.10\lib\3.5\Twilio.Api.xml" />
+    <Content Include="lib\Twilio.3.6.10\lib\SL4-WINDOWSPHONE71\Twilio.Api.WindowsPhone.dll" />
+    <Content Include="lib\Twilio.3.6.10\lib\SL4-WINDOWSPHONE71\Twilio.Api.WindowsPhone.pdb" />
+    <Content Include="lib\Twilio.3.6.10\lib\SL4-WINDOWSPHONE71\Twilio.Api.WindowsPhone.xml" />
+    <Content Include="lib\Twilio.3.6.10\lib\SL4\Twilio.Api.Silverlight.dll" />
+    <Content Include="lib\Twilio.3.6.10\lib\SL4\Twilio.Api.Silverlight.pdb" />
+    <Content Include="lib\Twilio.3.6.10\lib\SL4\Twilio.Api.Silverlight.xml" />
     <Content Include="Scripts\backstretch.js" />
     <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -296,7 +325,9 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

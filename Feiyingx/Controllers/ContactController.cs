@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Feiyingx.Code;
 using Feiyingx.Code.DataConstants;
 using Feiyingx.Data.Services;
 using Feiyingx.ViewModels;
+using Twilio;
 
 namespace Feiyingx.Controllers
 {
@@ -33,7 +35,7 @@ Message:
                 }
                 catch (Exception ex)
                 {
-                    return Json(new { status = "error" });
+                    return Json(new { status = "error", message = ex.Message });
                 }
                 
             }
@@ -51,16 +53,15 @@ Message:
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    String msg = String.Format("{0} {1} says: {2}", vm.FirstName, vm.LastName, vm.Message);
-                    TwilioService.SendText(msg);
-                    return Json(new { status = "success" });
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { status = "error" });
-                }
+
+                String msg = String.Format("{0} {1} says: {2}", vm.FirstName, vm.LastName, vm.Message);
+                string AccountSid = Config.TwilioSettings.AccountId();
+                string authToken = Config.TwilioSettings.AuthToken();
+                TwilioRestClient twilio = new TwilioRestClient(AccountSid, authToken);
+                var sentMessage = twilio.SendSmsMessage(Config.TwilioSettings.TwilioPhoneNumber(), "5628419855", msg);
+                
+                return Json(new { status = "success" });
+
 
             }
             //TODO: handle error if necessary
