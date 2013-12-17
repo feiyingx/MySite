@@ -6,7 +6,8 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>Ken Wang</title>
+        <meta name="description" content="A software dev's life " />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <script type="text/javascript" src="//use.typekit.net/ywx7jnn.js"></script>
         <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
@@ -18,7 +19,7 @@
         <div class="loading tablefy">
             <div class="tablefy-cell">
                 <div class="loader-container">
-                    <p>I'm on it!</p>
+                    @*<p>I'm on it!</p>*@
                     <div class="loader loading-block-1"></div>
                     <div class="loader loading-block-2"></div>
                     <div class="loader loading-block-3"></div>
@@ -77,6 +78,19 @@
                 } 
 
             }(jQuery));
+        </script>
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-46516294-1', 'kenwang.me');
+            ga('send', 'pageview');
+
         </script>
     </body>
 </html>

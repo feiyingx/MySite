@@ -669,6 +669,14 @@ h2{
     background-color: #2980b9;
 }
 
+.theme-my-site.promo-graphic {
+    background-color: #242424;
+}
+
+.theme-my-site h3 {
+    color: #ef2064;
+}
+
 /* Contact page css */
 @font-face {
     font-family: AndaleMono;

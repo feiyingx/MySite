@@ -1,6 +1,5 @@
 ﻿@model List<Feiyingx.Data.Models.Recommendation>
 @{
-    ViewBag.Title = "Index";
     bool hasRecs = (Model == null || Model.Count == 0) ? false : true;
 }
 
@@ -12,8 +11,8 @@
         <li class="@rec.CssClass">
             
             <p class="person-section">
-                <em class="name"><a href="@rec.LinkedIn">@rec.FirstName @rec.LastName</a></em>
-                <em class="title">@rec.PositionTitle</em>, <em class="company"><a href="@rec.CompanyUrl">@rec.CompanyName</a></em>
+                <em class="name"><a href="@rec.LinkedIn" target="_blank">@rec.FirstName @rec.LastName</a></em>
+                <em class="title">@rec.PositionTitle</em>, <em class="company"><a href="@rec.CompanyUrl" target="_blank">@rec.CompanyName</a></em>
             </p>
             <p>
                 @Html.Raw(rec.Message)
