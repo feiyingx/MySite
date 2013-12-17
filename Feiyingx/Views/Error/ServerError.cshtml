@@ -2,5 +2,19 @@
     ViewBag.Title = "ServerError";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section scripts{
+    <script src="/scripts/jquery.box2d.min.js"></script>
+    <script>
+        $(".red-button").click(function () {
+            $(".box2d").box2d({ 'y-velocity': 10 });
+        });
+    </script>
+}
 
-<h2>ServerError</h2>
+<div class="error-container server-error">
+    <h2 class="box2d">500</h2>
+    <p class="box2d"><em>Warning!</em> System error. Do NOT press the red button.</p>
+    
+    <a class="red-button box2d"></a>
+</div>
+

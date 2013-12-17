@@ -764,3 +764,58 @@ em.double-prompt {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.server-error h2 {
+    -webkit-transform: rotate(-25deg);
+    -moz-transform: rotate(-25deg);
+    margin: 0;
+}
+
+.server-error {
+    display: block;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.server-error p {
+    display: inline-block;
+    background-color: red;
+}
+
+.server-error a {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    display: block;
+    background-color: red;
+    opacity: 0.65;
+    margin: 80px auto;
+    cursor: pointer;
+
+    background-color: #FF3333;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FF3333), to(#CC0000));
+    background-image: -webkit-linear-gradient(top, #FF3333, #CC0000); 
+    background-image: -moz-linear-gradient(top, #AE2C1C, #750000); 
+    background-image: -ms-linear-gradient(top, #AE2C1C, #750000); 
+    background-image: -o-linear-gradient(top, #AE2C1C, #750000); 
+    box-shadow: 0px 3px 8px #B43E3E, inset 0px 2px 3px #D85656;
+}
+
+.server-error a:hover {
+    background: #FF1111;
+}
+
+.server-error a:before {
+    content: "";
+      display: block;
+      background: #fff;
+      border-top: 2px solid #ddd;
+      position: absolute;
+      
+      z-index: -1;
+      border-radius: 50%;
+      box-shadow: inset 0px 8px 48px #ddd;
+}
