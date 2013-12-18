@@ -323,7 +323,6 @@ a#nav-logo {
     padding-bottom: 20px;
 }
 
-
 .tablefy {
     display: table;
 }
@@ -813,7 +812,7 @@ em.double-prompt {
     background-image: -moz-linear-gradient(top, #AE2C1C, #750000); 
     background-image: -ms-linear-gradient(top, #AE2C1C, #750000); 
     background-image: -o-linear-gradient(top, #AE2C1C, #750000); 
-    box-shadow: 0px 3px 8px #B43E3E, inset 0px 2px 3px #D85656;
+    /*box-shadow: 0px 3px 8px #B43E3E, inset 0px 2px 3px #D85656;*/
 }
 
 .server-error a:hover {

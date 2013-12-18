@@ -43,9 +43,17 @@
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
         <script>
-            
+
             $(window).bind('beforeunload', function (e) {
                 startPageLoadTransition();
+            });
+
+
+            //To deal with Safari's page caching issue where when a user clicks back, it loads the cached page and none of the scripts get triggered
+            $(window).bind("pageshow", function (event) {
+                if (event.originalEvent.persisted) {
+                    completePageLoadTransition();
+                }
             });
 
             $(function () {
@@ -60,7 +68,7 @@
 
             //Display our new page to complete the transition
             function completePageLoadTransition() {
-                setTimeout(function () { $(".loading").hide(); }, 100); //Give some load time to avoid jerky UI
+                setTimeout(function () { $(".loading").hide(); }, 650); //Give some load time to avoid jerky UI
             }
 
             (function ($) {
